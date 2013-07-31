@@ -17,7 +17,7 @@ Require the libraries with Composer:
 
 To use PHP-DI in your ZF2 application, you need to make the following two changes:
 
-In your <application root>/module/Application/config/module.config.php, find the service_manager section
+In your application_root/module/Application/config/module.config.php, find the service_manager section
 which looks like this:
 
 ```php
@@ -53,8 +53,32 @@ Add a factory function to the Zend Service Manager for the PHP-DI container.  Th
         ),
 ```
 
-Now in each of your controllers, you must inherit from DI\ZendFramework2\InjectedAbstractActionController
-or DI\ZendFramework2\InjectedAbstractRestfulController, depending on what type of controller it is.
+Now in each of your controllers, you must extend DI\ZendFramework2\InjectedAbstractActionController
+or DI\ZendFramework2\InjectedAbstractRestfulController, depending on what type of controller it is:
+
+ ```php
+	class IndexController extends AbstractActionController
+ ```
+
+ becomes
+
+```php
+	use DI\ZendFramework2\InjectedAbstractActionController;
+	class IndexController extends InjectedAbstractActionController
+ ```
+
+ or
+
+ ```php
+	class IndexController extends AbstractRestfulController
+  ```
+
+  becomes
+
+ ```php
+	use DI\ZendFramework2\InjectedAbstractRestfulController;
+	class IndexController extends InjectedAbstractRestfulController
+  ```
 
 That's it!
 
