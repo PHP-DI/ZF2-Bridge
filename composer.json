@@ -1,0 +1,16 @@
+{
+    "name": "jflitton/php-di-zf2",
+    "type": "library",
+    "description": "Integrates PHP-DI to Zend Framework 2",
+    "homepage": "http://jflitton.github.com/PHP-DI-ZF2/",
+    "license": "MIT",
+    "autoload": {
+        "psr-0": {
+            "DI\\ZendFramework2": "src/"
+        }
+    },
+	"require": {
+		"mnapoli/php-di": ">=3.3.0",
+		"zendframework/zendframework": ">2.2.0rc1"
+	}
+}
