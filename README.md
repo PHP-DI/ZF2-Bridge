@@ -4,6 +4,8 @@ This library provides integration for PHP-DI with Zend Framework 2.
 
 [PHP-DI](http://mnapoli.github.io/PHP-DI/) is a Dependency Injection Container for PHP.
 
+If you are looking for Zend Framework 1 integration, head over [here](https://github.com/mnapoli/PHP-DI-ZF1).
+
 ## Use
 
 Require the libraries with Composer:
