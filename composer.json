@@ -10,7 +10,9 @@
         }
     },
     "require": {
+        "php": ">=5.3.3",
         "mnapoli/php-di": "~4.0",
-        "zendframework/zendframework": ">2.2.0rc1"
+        "zendframework/zend-modulemanager": "~2.2",
+        "zendframework/zend-servicemanager": "~2.2"
     }
 }
