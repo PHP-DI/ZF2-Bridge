@@ -12,10 +12,10 @@ Require the libraries with Composer:
 
 ```json
 {
-	"require": {
-		"mnapoli/php-di": "*",
-		"mnapoli/php-di-zf2": "*"
-	}
+    "require": {
+        "mnapoli/php-di": "*",
+        "mnapoli/php-di-zf2": "*"
+    }
 }
 ```
 
@@ -25,35 +25,35 @@ In your application_root/module/Application/config/module.config.php, find the s
 which looks like this:
 
 ```php
-	'service_manager' => array(
-		'abstract_factories' => array(
-			'Zend\Cache\Service\StorageCacheAbstractServiceFactory',
-			'Zend\Log\LoggerAbstractServiceFactory',
-		),
-		'aliases' => array(
-			'translator' => 'MvcTranslator',
-		),
-	),
+    'service_manager' => array(
+        'abstract_factories' => array(
+            'Zend\Cache\Service\StorageCacheAbstractServiceFactory',
+            'Zend\Log\LoggerAbstractServiceFactory',
+        ),
+        'aliases' => array(
+            'translator' => 'MvcTranslator',
+        ),
+    ),
 ```
 
 Add a factory function to the Zend Service Manager for the PHP-DI container. The result will look like this:
 
 ```php
-	'service_manager' => array(
-		'abstract_factories' => array(
-			'Zend\Cache\Service\StorageCacheAbstractServiceFactory',
-			'Zend\Log\LoggerAbstractServiceFactory',
-		),
-		'aliases' => array(
-			'translator' => 'MvcTranslator',
-		),
-		'factories' => array(
-			'DI\Container' => function () {
-				// Configure your container here
-				return new DI\Container();
-			},
-		),
-	),
+    'service_manager' => array(
+        'abstract_factories' => array(
+            'Zend\Cache\Service\StorageCacheAbstractServiceFactory',
+            'Zend\Log\LoggerAbstractServiceFactory',
+        ),
+        'aliases' => array(
+            'translator' => 'MvcTranslator',
+        ),
+        'factories' => array(
+            'DI\Container' => function () {
+                // Configure your container here
+                return new DI\Container();
+            },
+        ),
+    ),
 ```
 
 Now in each of your controllers, you must extend DI\ZendFramework2\InjectedAbstractActionController
