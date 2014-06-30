@@ -29,7 +29,22 @@ class PHPDIAbstractFactory implements AbstractFactoryInterface
      */
     public function canCreateServiceWithName(ServiceLocatorInterface $serviceLocator, $name, $requestedName)
     {
-        return $this->getContainer($serviceLocator)->has($requestedName);
+        /** @var Container $container */
+        $container = $this->getContainer($serviceLocator);
+        if ($container->has($requestedName)) {
+            // if getting service by interface, check that the container knows, which implementation
+            // to use. Return false otherwise to pass service resolution to the next abstract factory
+            // instead of throwing an exception
+            if (interface_exists($requestedName)) {
+                $definition = $container->getDefinitionManager()->getDefinition($requestedName);
+                if ($definition instanceof ClassDefinition
+                    && $definition->getClassName() === $definition->getName()) {
+                    return false;
+                }
+            }
+            return true;
+        }
+        return false;
     }
 
     /**
