@@ -1,8 +1,8 @@
 {
-    "name": "mnapoli/php-di-zf2",
+    "name": "php-di/php-di-zf2",
     "type": "library",
     "description": "Integrates PHP-DI to Zend Framework 2",
-    "homepage": "https://github.com/mnapoli/PHP-DI-ZF2/",
+    "homepage": "https://github.com/PHP-DI/PHP-DI-ZF2/",
     "license": "MIT",
     "autoload": {
         "psr-0": {
