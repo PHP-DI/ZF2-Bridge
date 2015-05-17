@@ -33,13 +33,17 @@ class DIContainerFactory implements FactoryInterface
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
         $builder = new ContainerBuilder();
-        $builder->addDefinitions(__DIR__ . '/../../../../../../../config/php-di-config.php');
+        $configFile = __DIR__ . '/../../../../../../../config/php-di.config.php';
 
-        $redis = new Redis();
-        $redis->connect("localhost");
-        $cache = new RedisCache();
-        $cache->setRedis($redis);
-        $builder->setDefinitionCache($cache);
+        if (file_exists($configFile)) {
+            $builder->addDefinitions($configFile);
+        }
+
+//        $redis = new Redis();
+//        $redis->connect("localhost");
+//        $cache = new RedisCache();
+//        $cache->setRedis($redis);
+//        $builder->setDefinitionCache($cache);
 
         return $builder->build();
     }
