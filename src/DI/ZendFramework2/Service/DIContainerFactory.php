@@ -11,9 +11,7 @@ namespace DI\ZendFramework2\Service;
 
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
-use DI\ContainerBuilder;
-use Doctrine\Common\Cache\RedisCache;
-use Redis;
+use DI\ContainerBuilder;;
 
 /**
  * Abstract factory responsible of trying to build services from the PHP DI container
@@ -38,12 +36,6 @@ class DIContainerFactory implements FactoryInterface
         if (file_exists($configFile)) {
             $builder->addDefinitions($configFile);
         }
-
-//        $redis = new Redis();
-//        $redis->connect("localhost");
-//        $cache = new RedisCache();
-//        $cache->setRedis($redis);
-//        $builder->setDefinitionCache($cache);
 
         return $builder->build();
     }
