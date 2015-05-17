@@ -28,6 +28,13 @@ To use PHP-DI in your ZF2 application, you need to edit `application_root/config
         'DI\ZendFramework2',
         ...
     ],
+    
+    'service_manager' => [
+        // ...
+        'factories' => [
+            'DI\Container' => 'DI\ZendFramework2\\Service\\DIContainerFactory',
+        ],
+    ],
 ```
 
 That's it!

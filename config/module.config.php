@@ -16,7 +16,6 @@ return [
 
         'factories' => [
             'ControllerLoader' => __NAMESPACE__ . '\\Service\\ControllerLoaderFactory',
-            'DI\Container' => __NAMESPACE__ . '\\Service\\DIContainerFactory',
         ],
     ],
 ];

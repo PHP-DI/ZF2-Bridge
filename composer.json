@@ -4,15 +4,21 @@
     "description": "Integrates PHP-DI to Zend Framework 2",
     "homepage": "https://github.com/PHP-DI/PHP-DI-ZF2/",
     "license": "MIT",
-    "autoload": {
-        "psr-0": {
-            "DI\\ZendFramework2\\": "src/"
-        }
-    },
     "require": {
         "php": ">=5.3.3",
-        "mnapoli/php-di": "~4.0",
-        "zendframework/zend-modulemanager": "~2.2",
-        "zendframework/zend-servicemanager": "~2.2"
+        "mnapoli/php-di": "~4.0"
+    },
+
+    "require-dev": {
+        "zendframework/zendframework": "2.4.*",
+        "squizlabs/php_codesniffer": "2.*",
+        "phpmd/phpmd" : "@stable",
+        "phpunit/phpunit": "4.6.*"
+    },
+
+    "autoload": {
+        "classmap": [
+          "src/", "vendor/", "tests"
+        ]
     }
 }

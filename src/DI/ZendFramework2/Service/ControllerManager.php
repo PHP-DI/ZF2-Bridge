@@ -55,6 +55,7 @@ class ControllerManager extends ZendControllerManager
      * @throws Exception\ServiceNotFoundException
      * @throws Exception\ServiceNotCreatedException
      * @throws Exception\RuntimeException
+     * @SuppressWarnings(PHPMD.LongVariable)
      */
     public function get($name, $options = array(), $usePeeringServiceManagers = true)
     {
@@ -62,13 +63,13 @@ class ControllerManager extends ZendControllerManager
 
         if ($this->container->has($name)) {
             $controller = $this->container->get($name);
-        } else if (parent::has($name, true, $usePeeringServiceManagers)) {
+        } elseif (parent::has($name, true, $usePeeringServiceManagers)) {
             $controller = parent::get($name, $options, $usePeeringServiceManagers);
         }
 
         if (!$controller) {
             throw new Exception\ServiceNotFoundException("Unable to locate service '{$name}'");
-        } else if (!($controller instanceof DispatchableInterface)) {
+        } elseif (!($controller instanceof DispatchableInterface)) {
             throw new Exception\RuntimeException("Service '{$name}' is not a Controller.");
         }
 
@@ -82,12 +83,13 @@ class ControllerManager extends ZendControllerManager
      * @param  bool         $checkAbstractFactories
      * @param  bool         $usePeeringServiceManagers
      * @return bool
+     * @SuppressWarnings(PHPMD.LongVariable)
      */
     public function has($name, $checkAbstractFactories = true, $usePeeringServiceManagers = false)
     {
         if ($this->container->has($name)) {
             return true;
-        } else if (parent::has($name, $checkAbstractFactories, $usePeeringServiceManagers)) {
+        } elseif (parent::has($name, $checkAbstractFactories, $usePeeringServiceManagers)) {
             return true;
         }
 
