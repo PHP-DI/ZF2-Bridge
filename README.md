@@ -19,28 +19,35 @@ Require the libraries with Composer:
 }
 ```
 
-To use PHP-DI in your ZF2 application, you need to edit `application_root/module/Application/config/module.config.php`:
+To use PHP-DI in your ZF2 application, you need to edit `application_root/config/module.config.php`:
 
 ```php
     // ...
-    'modules' => array(
+    'modules' => [
+        ...
         'DI\ZendFramework2',
-    ),
-    // ...
-    'service_manager' => array(
+        ...
+    ],
+    
+    'service_manager' => [
         // ...
-        'factories' => array(
-            'DI\Container' => function () {
-                $builder = new DI\ContainerBuilder();
-                // Configure your container here
-                return $builder->build();
-            },
-        ),
-    ),
+        'factories' => [
+            'DI\Container' => 'DI\ZendFramework2\\Service\\DIContainerFactory',
+        ],
+    ],
 ```
 
 That's it!
 
 Now you dependencies are injected in your controllers!
+
+If you'd like to specify the di configuration yourself, create this file: `application_root/config/php-di.config.php`
+and save it with your PHP DI configuration e.g. like this:
+
+```
+return [
+    'Application\Service\GreetingServiceInterface' => Di\object('Application\Service\GreetingService'),
+];
+```
 
 Head over to [PHP-DI's documentation](http://php-di.org/doc/) if needed.

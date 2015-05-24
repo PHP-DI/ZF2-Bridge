@@ -23,13 +23,6 @@ class Module implements ConfigProviderInterface
      */
     public function getConfig()
     {
-        return array(
-            'service_manager' => array(
-                'abstract_factories' => array(
-                    __NAMESPACE__ . '\\Service\\PHPDIAbstractFactory'
-                        => __NAMESPACE__ . '\\Service\\PHPDIAbstractFactory',
-                ),
-            ),
-        );
+        return include __DIR__ . '/../../../config/module.config.php';
     }
 }
