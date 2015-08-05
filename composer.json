@@ -6,11 +6,11 @@
     "license": "MIT",
     "require": {
         "php": ">=5.3.3",
-        "mnapoli/php-di": "~4.0"
+        "php-di/php-di": "~5.0"
     },
 
     "require-dev": {
-        "zendframework/zendframework": "2.4.*",
+        "zendframework/zendframework": "2.5.*",
         "squizlabs/php_codesniffer": "2.*",
         "phpmd/phpmd" : "@stable",
         "phpunit/phpunit": "4.6.*"
