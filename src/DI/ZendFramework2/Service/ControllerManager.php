@@ -87,7 +87,7 @@ class ControllerManager extends ZendControllerManager
      */
     public function has($name, $checkAbstractFactories = true, $usePeeringServiceManagers = false)
     {
-        if ($this->container->has($name)) {
+        if (is_string($name) && $this->container->has($name)) {
             return true;
         } elseif (parent::has($name, $checkAbstractFactories, $usePeeringServiceManagers)) {
             return true;
