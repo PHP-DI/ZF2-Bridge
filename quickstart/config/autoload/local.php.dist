@@ -11,6 +11,11 @@
  * credentials from accidentally being comitted into version control.
  */
 
-return array(
-    // ...
-);
+return [
+    'phpdi-zf2' => [
+        'cache' => [
+            'adapter' => 'filesystem',
+            'namespace' => 'quickstart',
+        ],
+    ]
+];

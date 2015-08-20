@@ -12,6 +12,7 @@ namespace DI\ZendFramework2\Service;
 use Acclimate\Container\ContainerAcclimator;
 use DI\Container;
 use DI\ContainerBuilder;
+use Doctrine\Common\Cache\Cache;
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 
@@ -23,6 +24,8 @@ use Zend\ServiceManager\ServiceLocatorInterface;
  */
 final class DIContainerFactory implements FactoryInterface
 {
+
+    use ConfigTrait;
 
     /**
      * @var Container
@@ -42,18 +45,23 @@ final class DIContainerFactory implements FactoryInterface
         }
 
         $builder = new ContainerBuilder();
-        $config = $serviceLocator->get('config');
+        $config = $this->getConfig($serviceLocator);
         $configFile = $this->getDefinitionsFilePath($config);
-
-        if (file_exists($configFile)) {
-            $builder->addDefinitions($configFile);
-        }
-
+        $builder->addDefinitions($configFile);
         $builder->useAnnotations(true);
 
         $acclimator = new ContainerAcclimator();
         $zfContainer = $acclimator->acclimate($serviceLocator);
         $builder->wrapContainer($zfContainer);
+
+        /**
+         * @var $cache Cache
+         */
+        $cache = $serviceLocator->get('DiCache');
+
+        if ($cache) {
+            $builder->setDefinitionCache($cache);
+        }
 
         $this->container = $builder->build();
 
@@ -66,13 +74,18 @@ final class DIContainerFactory implements FactoryInterface
      * @param array $config
      *
      * @return string
+     * @throws
      */
     private function getDefinitionsFilePath(array $config)
     {
         $filePath = __DIR__ . '/../../../../../../../config/php-di.config.php';
 
-        if (isset($config['phpdi-zf2']) && isset($config['phpdi-zf2']['definitionsFile'])) {
-            $filePath = $config['phpdi-zf2']['definitionsFile'];
+        if (isset($config['definitionsFile'])) {
+            $filePath = $config['definitionsFile'];
+        }
+
+        if (!file_exists($filePath)) {
+            throw new \Exception('DI definitions file missing.');
         }
 
         return $filePath;
