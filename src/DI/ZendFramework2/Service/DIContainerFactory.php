@@ -9,9 +9,11 @@
 
 namespace DI\ZendFramework2\Service;
 
+use Acclimate\Container\ContainerAcclimator;
+use DI\Container;
+use DI\ContainerBuilder;;
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
-use DI\ContainerBuilder;;
 
 /**
  * Abstract factory responsible of trying to build services from the PHP DI container
@@ -23,13 +25,22 @@ class DIContainerFactory implements FactoryInterface
 {
 
     /**
+     * @var Container
+     */
+    private $container;
+
+    /**
      * Create service
      *
      * @param ServiceLocatorInterface $serviceLocator
-     * @return mixed
+     * @return Container
      */
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
+        if ($this->container !== null) {
+            return $this->container;
+        }
+
         $builder = new ContainerBuilder();
         $configFile = __DIR__ . '/../../../../../../../config/php-di.config.php';
 
@@ -37,6 +48,14 @@ class DIContainerFactory implements FactoryInterface
             $builder->addDefinitions($configFile);
         }
 
-        return $builder->build();
+        $builder->useAnnotations(true);
+
+        $acclimator = new ContainerAcclimator();
+        $zfContainer = $acclimator->acclimate($serviceLocator);
+        $builder->wrapContainer($zfContainer);
+
+        $this->container = $builder->build();
+
+        return $this->container;
     }
 }
