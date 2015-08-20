@@ -9,14 +9,16 @@
 
 namespace DI\ZendFramework2;
 
+use Zend\Console\Adapter\AdapterInterface;
 use Zend\ModuleManager\Feature\ConfigProviderInterface;
+use Zend\ModuleManager\Feature\ConsoleUsageProviderInterface;
 
 /**
  * Module that provides PHP-DI integration with ZF2
  *
  * @author Marco Pivetta <ocramius@gmail.com>
  */
-class Module implements ConfigProviderInterface
+class Module implements ConfigProviderInterface, ConsoleUsageProviderInterface
 {
     /**
      * {@inheritDoc}
@@ -24,5 +26,21 @@ class Module implements ConfigProviderInterface
     public function getConfig()
     {
         return include __DIR__ . '/../../../config/module.config.php';
+    }
+
+    /**
+     * shows the console banner with clear def. cache command
+     *
+     * @param \Zend\Console\Adapter\AdapterInterface $console
+     *
+     * @return array
+     *
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+     */
+    public function getConsoleUsage(AdapterInterface $console)
+    {
+        return [
+            'php-di-clear-cache' => 'Clear PHP DI definitions cache.',
+        ];
     }
 }
