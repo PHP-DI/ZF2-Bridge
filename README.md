@@ -1,5 +1,7 @@
 # PHP-DI integration with Zend Framework 2
 
+[![Build Status](https://travis-ci.org/PHP-DI/ZF2-Bridge.svg)](https://travis-ci.org/PHP-DI/ZF2-Bridge)
+
 This library provides integration for PHP-DI with Zend Framework 2.
 
 [PHP-DI](http://php-di.org/) is a Dependency Injection Container for PHP.
