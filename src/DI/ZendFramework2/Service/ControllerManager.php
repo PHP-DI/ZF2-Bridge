@@ -9,7 +9,7 @@
 
 namespace DI\ZendFramework2\Service;
 
-use DI\Container;
+use Interop\Container\ContainerInterface;
 use Zend\ServiceManager\Exception;
 use Zend\Mvc\Controller\ControllerManager as ZendControllerManager;
 use Zend\ServiceManager\ConfigInterface;
@@ -24,15 +24,15 @@ class ControllerManager extends ZendControllerManager
 {
 
     /**
-     * @var Container
+     * @var ContainerInterface
      */
     protected $container;
 
     /**
-     * @param Container $container
+     * @param ContainerInterface $container
      * @param ConfigInterface $configuration
      */
-    public function __construct(Container $container, ConfigInterface $configuration = null)
+    public function __construct(ContainerInterface $container, ConfigInterface $configuration = null)
     {
         $this->container = $container;
 
