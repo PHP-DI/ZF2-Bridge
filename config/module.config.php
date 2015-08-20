@@ -42,4 +42,8 @@ return [
             ]
         ],
     ],
+
+    'phpdi-zf2' => [
+        'useAnntotations' => false,
+    ],
 ];

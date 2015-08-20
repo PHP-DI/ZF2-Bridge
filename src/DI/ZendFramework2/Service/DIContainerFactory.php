@@ -48,7 +48,9 @@ final class DIContainerFactory implements FactoryInterface
         $config = $this->getConfig($serviceLocator);
         $configFile = $this->getDefinitionsFilePath($config);
         $builder->addDefinitions($configFile);
-        $builder->useAnnotations(true);
+
+        $useAnnotations = $this->getUseAnnotations($config);
+        $builder->useAnnotations($useAnnotations);
 
         $acclimator = new ContainerAcclimator();
         $zfContainer = $acclimator->acclimate($serviceLocator);
@@ -89,5 +91,20 @@ final class DIContainerFactory implements FactoryInterface
         }
 
         return $filePath;
+    }
+
+    /**
+     * returns true, if annotations should be used
+     *
+     * @param array $config
+     * @return bool
+     */
+    private function getUseAnnotations(array $config)
+    {
+        if (!isset($config['useAnntotations']) || $config['useAnntotations'] !== true) {
+            return false;
+        }
+
+        return true;
     }
 }

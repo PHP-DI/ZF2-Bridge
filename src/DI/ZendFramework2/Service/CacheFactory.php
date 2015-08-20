@@ -48,10 +48,9 @@ class CacheFactory implements FactoryInterface
         switch ($adapter) {
             case 'filesystem':
                 return $this->getFilesystemCache($config);
-
-            default:
-               throw new \Exception('Unsupported cache adapter - ' . $adapter);
         }
+
+        throw new \Exception('Unsupported cache adapter - ' . $adapter);
     }
 
     /**
