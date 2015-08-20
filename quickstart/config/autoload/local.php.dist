@@ -13,9 +13,18 @@
 
 return [
     'phpdi-zf2' => [
+        'definitionsFile' => realpath(__DIR__ . '/../php-di.config.php'),
+        'useAnntotations' => true,
         'cache' => [
-            'adapter' => 'filesystem',
             'namespace' => 'quickstart',
+
+            // file adapter
+            'adapter' => 'filesystem',
+
+            // redis adapter
+            'adapter' => 'redis',
+            'host' => 'localhost',
+            'port' => 6379,
         ],
     ]
 ];

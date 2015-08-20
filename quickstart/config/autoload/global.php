@@ -14,6 +14,7 @@
 return [
     'phpdi-zf2' => [
         'definitionsFile' => realpath(__DIR__ . '/../php-di.config.php'),
+        'useAnntotations' => true,
         'cache' => [
             'adapter' => 'filesystem',
             'namespace' => 'quickstart',

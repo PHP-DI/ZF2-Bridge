@@ -49,7 +49,7 @@ final class DIContainerFactory implements FactoryInterface
         $configFile = $this->getDefinitionsFilePath($config);
         $builder->addDefinitions($configFile);
 
-        $useAnnotations = $this->getUseAnnotations($config);
+        $useAnnotations = $this->shouldUseAnnotations($config);
         $builder->useAnnotations($useAnnotations);
 
         $acclimator = new ContainerAcclimator();
@@ -99,7 +99,7 @@ final class DIContainerFactory implements FactoryInterface
      * @param array $config
      * @return bool
      */
-    private function getUseAnnotations(array $config)
+    private function shouldUseAnnotations(array $config)
     {
         if (!isset($config['useAnntotations']) || $config['useAnntotations'] !== true) {
             return false;

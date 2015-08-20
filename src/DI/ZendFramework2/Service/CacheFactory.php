@@ -7,8 +7,10 @@ namespace DI\ZendFramework2\Service;
 
 use Doctrine\Common\Cache\Cache;
 use Doctrine\Common\Cache\FilesystemCache;
+use Doctrine\Common\Cache\RedisCache;
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
+use Redis;
 
 /**
  * Factory for php di definitions cache
@@ -48,6 +50,9 @@ class CacheFactory implements FactoryInterface
         switch ($adapter) {
             case 'filesystem':
                 return $this->getFilesystemCache($config);
+
+            case 'redis':
+                return $this->getRedisCache($config);
         }
 
         throw new \Exception('Unsupported cache adapter - ' . $adapter);
@@ -69,5 +74,33 @@ class CacheFactory implements FactoryInterface
         }
 
         return new FilesystemCache($directory);
+    }
+
+    /**
+     * creates redis cache
+     *
+     * @param array $config
+     * @return RedisCache
+     */
+    private function getRedisCache(array $config)
+    {
+        $host = 'localhost';
+        $port = 6379;
+
+        if (isset($config['host'])) {
+            $host = $config['host'];
+        }
+
+        if (isset($config['port'])) {
+            $port = $config['port'];
+        }
+
+        $redis = new Redis();
+        $redis->connect($host, $port);
+
+        $cache = new RedisCache();
+        $cache->setRedis($redis);
+
+        return $cache;
     }
 }
