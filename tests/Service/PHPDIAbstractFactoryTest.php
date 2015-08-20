@@ -40,23 +40,23 @@ class PHPDIAbstractFactoryTest extends \PHPUnit_Framework_TestCase
 
     public function testGetInServiceManager()
     {
-        $this->serviceManager->setService('foo', 'bar');
+        $this->serviceManager->setService('phpdifoo', 'bar');
 
-        $this->assertTrue($this->serviceManager->has('foo'));
-        $this->assertEquals('bar', $this->serviceManager->get('foo'));
+        $this->assertTrue($this->serviceManager->has('phpdifoo'));
+        $this->assertEquals('bar', $this->serviceManager->get('phpdifoo'));
     }
 
     public function testGetInPHPDI()
     {
-        $this->phpdi->set('foo', 'bar');
+        $this->phpdi->set('phpdifoo', 'bar');
 
-        $this->assertTrue($this->serviceManager->has('foo'));
-        $this->assertEquals('bar', $this->serviceManager->get('foo'));
+        $this->assertTrue($this->serviceManager->has('phpdifoo'));
+        $this->assertEquals('bar', $this->serviceManager->get('phpdifoo'));
     }
 
     public function testHasUndefinedEntry()
     {
-        $this->assertFalse($this->serviceManager->has('foo'));
+        $this->assertFalse($this->serviceManager->has('phpdifoo'));
     }
 
     /**
@@ -64,6 +64,6 @@ class PHPDIAbstractFactoryTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetUndefinedEntry()
     {
-        $this->serviceManager->get('foo');
+        $this->serviceManager->get('phpdifoo');
     }
 }

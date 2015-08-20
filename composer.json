@@ -16,7 +16,7 @@
         "zendframework/zendframework": "2.5.*",
         "squizlabs/php_codesniffer": "2.*",
         "phpmd/phpmd" : "@stable",
-        "phpunit/phpunit": "4.6.*"
+        "phpunit/phpunit": "4.8.*"
     },
 
     "autoload": {
