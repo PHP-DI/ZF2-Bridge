@@ -59,7 +59,7 @@ Head over to [PHP-DI's documentation](http://php-di.org/doc/) if needed.
 To configure the module, you have to override the module config somewhere at config/autoload/global.php 
 or config/autoload/local.php.
   
-```
+```php
 return [
     'phpdi-zf2' => [
         ...
@@ -69,7 +69,7 @@ return [
 
 ### Override definitions file location
 
-```
+```php
 return [
     'phpdi-zf2' => [
         'definitionsFile' => realpath(__DIR__ . '/../my.custom.def.config.php'),
@@ -79,7 +79,7 @@ return [
 
 ### Enable or disable annotations
 
-```
+```php
 return [
     'phpdi-zf2' => [
         'useAnntotations' => true,
@@ -89,7 +89,7 @@ return [
 
 ### Enable file cache
 
-```
+```php
 return [
     'phpdi-zf2' => [
         'cache' => [
@@ -103,7 +103,7 @@ return [
 
 ### Enable redis cache
 
-```
+```php
 return [
     'phpdi-zf2' => [
         'cache' => [
