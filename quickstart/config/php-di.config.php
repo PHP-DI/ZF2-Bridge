@@ -8,5 +8,5 @@
  */
 
 return [
-    'Application\Service\GreetingServiceInterface' => Di\object('Application\Service\GreetingService'),
+    Application\Service\GreetingServiceInterface::class => Di\object(Application\Service\GreetingService::class),
 ];

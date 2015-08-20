@@ -11,6 +11,8 @@
  * file.
  */
 
-return array(
-    // ...
-);
+return [
+    'phpdi-zf2' => [
+        'definitionsFile' => realpath(__DIR__ . '/../php-di.config.php'),
+    ]
+];

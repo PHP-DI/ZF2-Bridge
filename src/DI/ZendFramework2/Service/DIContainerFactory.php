@@ -11,7 +11,7 @@ namespace DI\ZendFramework2\Service;
 
 use Acclimate\Container\ContainerAcclimator;
 use DI\Container;
-use DI\ContainerBuilder;;
+use DI\ContainerBuilder;
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 
@@ -21,7 +21,7 @@ use Zend\ServiceManager\ServiceLocatorInterface;
  * @author Marco Pivetta <ocramius@gmail.com>
  * @author Martin Fris
  */
-class DIContainerFactory implements FactoryInterface
+final class DIContainerFactory implements FactoryInterface
 {
 
     /**
@@ -42,7 +42,8 @@ class DIContainerFactory implements FactoryInterface
         }
 
         $builder = new ContainerBuilder();
-        $configFile = __DIR__ . '/../../../../../../../config/php-di.config.php';
+        $config = $serviceLocator->get('config');
+        $configFile = $this->getDefinitionsFilePath($config);
 
         if (file_exists($configFile)) {
             $builder->addDefinitions($configFile);
@@ -57,5 +58,23 @@ class DIContainerFactory implements FactoryInterface
         $this->container = $builder->build();
 
         return $this->container;
+    }
+
+    /**
+     * return definitions file path
+     *
+     * @param array $config
+     *
+     * @return string
+     */
+    private function getDefinitionsFilePath(array $config)
+    {
+        $filePath = __DIR__ . '/../../../../../../../config/php-di.config.php';
+
+        if (isset($config['phpdi-zf2']) && isset($config['phpdi-zf2']['definitionsFile'])) {
+            $filePath = $config['phpdi-zf2']['definitionsFile'];
+        }
+
+        return $filePath;
     }
 }

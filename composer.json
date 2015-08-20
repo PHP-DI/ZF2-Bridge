@@ -5,8 +5,10 @@
     "homepage": "https://github.com/PHP-DI/ZF2-Bridge",
     "license": "MIT",
     "require": {
-        "php": ">=5.3.3",
-        "php-di/php-di": "~5.0"
+        "php": ">=5.4",
+        "php-di/php-di": "~5.0",
+        "acclimate/container": "*",
+        "doctrine/annotations": "~1.2"
     },
 
     "require-dev": {

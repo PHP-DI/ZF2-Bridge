@@ -17,7 +17,7 @@
  */
 
 $dir = getcwd(); // php-di zf2 quickstart hack
-chdir("../../../../");
+chdir("../");
 
 // Composer autoloading
 if (file_exists('vendor/autoload.php')) {

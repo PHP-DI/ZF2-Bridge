@@ -2,7 +2,7 @@
 return array(
     'modules' => array(
         'DI\ZendFramework2',
-        'ZendDeveloperTools',
+        //'ZendDeveloperTools',
         'Application',
     ),
     'module_listener_options' => array(
