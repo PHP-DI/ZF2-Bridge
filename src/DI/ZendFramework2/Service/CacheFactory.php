@@ -6,6 +6,7 @@
 namespace DI\ZendFramework2\Service;
 
 use Doctrine\Common\Cache\Cache;
+use Doctrine\Common\Cache\CacheProvider;
 use Doctrine\Common\Cache\FilesystemCache;
 use Doctrine\Common\Cache\RedisCache;
 use Zend\ServiceManager\FactoryInterface;
@@ -47,15 +48,27 @@ class CacheFactory implements FactoryInterface
 
         $adapter = $config['adapter'];
 
+        /* @var $cache CacheProvider */
+        $cache = null;
+
         switch ($adapter) {
             case 'filesystem':
-                return $this->getFilesystemCache($config);
+                $cache = $this->getFilesystemCache($config);
+                break;
 
             case 'redis':
-                return $this->getRedisCache($config);
+                $cache = $this->getRedisCache($config);
+                break;
+
+            default:
+                throw new \Exception('Unsupported cache adapter - ' . $adapter);
         }
 
-        throw new \Exception('Unsupported cache adapter - ' . $adapter);
+        if (isset($config['namespace'])) {
+            $cache->setNamespace(trim($config['namespace']));
+        }
+
+        return $cache;
     }
 
     /**
