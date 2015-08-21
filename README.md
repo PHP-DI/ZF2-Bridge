@@ -30,7 +30,7 @@ To use PHP-DI in your ZF2 application, you need to edit `application_root/config
         'DI\ZendFramework2',
         ...
     ],
-    
+
     'service_manager' => [
         // ...
         'factories' => [
@@ -56,9 +56,9 @@ Head over to [PHP-DI's documentation](http://php-di.org/doc/) if needed.
 
 ## Fine tuning
 
-To configure the module, you have to override the module config somewhere at config/autoload/global.php 
+To configure the module, you have to override the module config somewhere at config/autoload/global.php
 or config/autoload/local.php.
-  
+
 ```php
 return [
     'phpdi-zf2' => [
@@ -103,6 +103,10 @@ return [
 
 ### Enable redis cache
 
+If you are also using Redis for storing php sessions, it is very useful to configure the php-di
+cache handler to use a different database, since you might accidentally delete all your sessions
+when clearing the php-di definitions cache.
+
 ```php
 return [
     'phpdi-zf2' => [
@@ -111,7 +115,18 @@ return [
             'adapter' => 'redis',
             'host' => 'localhost', // default is localhost
             'port' => 6379, // default is 6379
+            'database' => 1, // default is the same as phpredis default
         ],
     ]
 ];
+```
+
+## Console commands
+
+### Clear definition cache
+
+To clear the definition cache, run the following command from the project root:
+
+```
+php public/index.php php-di-clear-cache
 ```

@@ -99,6 +99,7 @@ class CacheFactory implements FactoryInterface
     {
         $host = 'localhost';
         $port = 6379;
+        $database = 0;
 
         if (isset($config['host'])) {
             $host = $config['host'];
@@ -108,8 +109,16 @@ class CacheFactory implements FactoryInterface
             $port = $config['port'];
         }
 
+        if (isset($config['database'])) {
+            $database = (int) $config['database'];
+        }
+
         $redis = new Redis();
         $redis->connect($host, $port);
+
+        if ($database) {
+            $redis->select($database);
+        }
 
         $cache = new RedisCache();
         $cache->setRedis($redis);

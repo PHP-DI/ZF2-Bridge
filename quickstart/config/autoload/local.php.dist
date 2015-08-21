@@ -25,6 +25,7 @@ return [
             'adapter' => 'redis',
             'host' => 'localhost',
             'port' => 6379,
+            'database' => 1, // default is the same as phpredis default
         ],
     ]
 ];
