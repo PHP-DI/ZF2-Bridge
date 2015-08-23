@@ -7,21 +7,21 @@
     "require": {
         "php": ">=5.5",
         "php-di/php-di": "~5.0",
-        "acclimate/container": "*",
+        "acclimate/container": "~1.0",
         "doctrine/annotations": "~1.0",
         "doctrine/cache": "~1.0"
     },
 
     "require-dev": {
-        "zendframework/zendframework": "2.5.*",
-        "squizlabs/php_codesniffer": "2.*",
-        "phpmd/phpmd" : "@stable",
-        "phpunit/phpunit": "4.8.*"
+        "zendframework/zendframework": "~2.5",
+        "squizlabs/php_codesniffer": "~2.0",
+        "phpmd/phpmd" : "~2.0",
+        "phpunit/phpunit": "~4.8"
     },
 
     "autoload": {
-        "classmap": [
-          "src/", "vendor/"
-        ]
+        "psr-4": {
+            "DI\\ZendFramework2\\": "src/DI/ZendFramework2"
+        }
     }
 }
