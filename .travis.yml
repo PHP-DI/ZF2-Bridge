@@ -7,6 +7,7 @@ php:
   - hhvm
 
 before_script:
+  - phpenv config-add misc/travis.php.ini
   - composer install -o
 
 sudo: false
