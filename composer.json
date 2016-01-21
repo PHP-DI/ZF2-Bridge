@@ -23,5 +23,11 @@
         "psr-4": {
             "DI\\ZendFramework2\\": "src/DI/ZendFramework2"
         }
+    },
+
+    "autoload-dev": {
+      "psr-4": {
+        "Test\\DI\\ZendFramework2\\": "tests/DI/ZendFramework2"
+      }
     }
 }

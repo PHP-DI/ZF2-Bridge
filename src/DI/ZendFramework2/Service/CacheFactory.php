@@ -30,7 +30,7 @@ class CacheFactory implements FactoryInterface
      * @param ServiceLocatorInterface $serviceLocator
      *
      * @return Cache|null
-     * @throws
+     * @throws ConfigException
      */
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
@@ -43,7 +43,7 @@ class CacheFactory implements FactoryInterface
         $config = $config['cache'];
 
         if (!isset($config['adapter'])) {
-            return null;
+            throw ConfigException::newCacheAdapterMissingException();
         }
 
         $adapter = $config['adapter'];
@@ -61,7 +61,7 @@ class CacheFactory implements FactoryInterface
                 break;
 
             default:
-                throw new \Exception('Unsupported cache adapter - ' . $adapter);
+                throw ConfigException::newUnsupportedCacheAdapterException($adapter);
         }
 
         if (isset($config['namespace'])) {

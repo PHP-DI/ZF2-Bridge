@@ -42,21 +42,21 @@ class PHPDIAbstractFactoryTest extends \PHPUnit_Framework_TestCase
     {
         $this->serviceManager->setService('phpdifoo', 'bar');
 
-        $this->assertTrue($this->serviceManager->has('phpdifoo'));
-        $this->assertEquals('bar', $this->serviceManager->get('phpdifoo'));
+        self::assertTrue($this->serviceManager->has('phpdifoo'));
+        self::assertEquals('bar', $this->serviceManager->get('phpdifoo'));
     }
 
     public function testGetInPHPDI()
     {
         $this->phpdi->set('phpdifoo', 'bar');
 
-        $this->assertTrue($this->serviceManager->has('phpdifoo'));
-        $this->assertEquals('bar', $this->serviceManager->get('phpdifoo'));
+        self::assertTrue($this->serviceManager->has('phpdifoo'));
+        self::assertEquals('bar', $this->serviceManager->get('phpdifoo'));
     }
 
     public function testHasUndefinedEntry()
     {
-        $this->assertFalse($this->serviceManager->has('phpdifoo'));
+        self::assertFalse($this->serviceManager->has('phpdifoo'));
     }
 
     /**

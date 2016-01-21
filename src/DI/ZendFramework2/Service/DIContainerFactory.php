@@ -59,7 +59,7 @@ final class DIContainerFactory implements FactoryInterface
         /**
          * @var $cache Cache
          */
-        $cache = $serviceLocator->get('DiCache');
+        $cache = $this->getCache($serviceLocator, $config);
 
         if ($cache) {
             $builder->setDefinitionCache($cache);
@@ -106,5 +106,24 @@ final class DIContainerFactory implements FactoryInterface
         }
 
         return true;
+    }
+
+    /**
+     * returns cache adapter, if configured properly
+     *
+     * @param ServiceLocatorInterface $serviceLocator
+     * @param array $config
+     * @return Cache|null
+     */
+    private function getCache(ServiceLocatorInterface $serviceLocator, array $config)
+    {
+        if (!isset($config['cache'])) {
+            return null;
+        }
+
+        /**
+         * @var $cache Cache
+         */
+        return $serviceLocator->get('DiCache');
     }
 }

@@ -24,6 +24,7 @@ trait ConfigTrait
      */
     private function getConfig(ServiceLocatorInterface $serviceLocator)
     {
+        /* @var $config array */
         $config = $serviceLocator->get('config');
         if (isset($config['phpdi-zf2'])) {
             $config = $config['phpdi-zf2'];
