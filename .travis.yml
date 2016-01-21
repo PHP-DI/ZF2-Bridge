@@ -7,7 +7,10 @@ php:
   - hhvm
 
 before_script:
-  - phpenv config-add misc/travis.php.ini
+  - if [[ "$TRAVIS_PHP_VERSION" != "hhvm" ]]; then phpenv config-add misc/travis.php.ini; fi
   - composer install -o
 
 sudo: false
+
+services:
+  - redis-server
