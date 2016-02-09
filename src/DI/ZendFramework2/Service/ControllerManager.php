@@ -10,9 +10,11 @@
 namespace DI\ZendFramework2\Service;
 
 use Interop\Container\ContainerInterface;
+use Zend\Mvc\Controller\AbstractController;
 use Zend\ServiceManager\Exception;
 use Zend\Mvc\Controller\ControllerManager as ZendControllerManager;
 use Zend\ServiceManager\ConfigInterface;
+use Zend\ServiceManager\InitializerInterface;
 use Zend\Stdlib\DispatchableInterface;
 
 /**
@@ -63,6 +65,7 @@ class ControllerManager extends ZendControllerManager
 
         if ($this->container->has($name)) {
             $controller = $this->container->get($name);
+            $this->initialize($controller);
         } elseif (parent::has($name, true, $usePeeringServiceManagers)) {
             $controller = parent::get($name, $options, $usePeeringServiceManagers);
         }
@@ -94,5 +97,21 @@ class ControllerManager extends ZendControllerManager
         }
 
         return false;
+    }
+
+    /**
+     * injects Zend core services into the given controller
+     *
+     * @param AbstractController $controller
+     */
+    private function initialize(AbstractController $controller)
+    {
+        foreach ($this->initializers as $initializer) {
+            if ($initializer instanceof InitializerInterface) {
+                $initializer->initialize($controller, $this);
+            } else {
+                call_user_func($initializer, $controller, $this);
+            }
+        }
     }
 }
