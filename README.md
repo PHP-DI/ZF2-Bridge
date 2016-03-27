@@ -21,7 +21,7 @@ Require the libraries with Composer:
 }
 ```
 
-To use PHP-DI in your ZF2 application, you need to edit `application_root/config/module.config.php`:
+To use PHP-DI in your ZF2 application, you need to edit `application_root/config/application.config.php`:
 
 ```php
     // ...
