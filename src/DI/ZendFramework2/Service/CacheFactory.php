@@ -8,6 +8,7 @@ namespace DI\ZendFramework2\Service;
 use Doctrine\Common\Cache\Cache;
 use Doctrine\Common\Cache\CacheProvider;
 use Doctrine\Common\Cache\FilesystemCache;
+use Doctrine\Common\Cache\MemcachedCache;
 use Doctrine\Common\Cache\RedisCache;
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
@@ -58,6 +59,10 @@ class CacheFactory implements FactoryInterface
 
             case 'redis':
                 $cache = $this->getRedisCache($config);
+                break;
+
+            case 'memcached':
+                $cache = $this->getMemcachedCache($config);
                 break;
 
             default:
@@ -122,6 +127,33 @@ class CacheFactory implements FactoryInterface
 
         $cache = new RedisCache();
         $cache->setRedis($redis);
+
+        return $cache;
+    }
+
+    /**
+     * creates memcached cache
+     *
+     * @param array $config
+     * @return MemcachedCache
+     */
+    private function getMemcachedCache(array $config)
+    {
+        $host = 'localhost';
+        $port = 11211;
+
+        if (isset($config['host'])) {
+            $host = $config['host'];
+        }
+
+        if (isset($config['port'])) {
+            $port = $config['port'];
+        }
+
+        $cache = new MemcachedCache();
+        $memcache = new \Memcached;
+        $memcache->addServer($host, $port);
+        $cache->setMemcached($memcache);
 
         return $cache;
     }
