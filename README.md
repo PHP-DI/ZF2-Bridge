@@ -134,6 +134,22 @@ return [
 ];
 ```
 
+### Enable Memcached cache
+
+If you're using Memcached, you should have only one project per memcached instance.
+
+```php
+return [
+    'phpdi-zf2' => [
+        'cache' => [
+            'adapter' => 'memcached',
+            'host' => 'localhost', // default is localhost
+            'port' => 11211, // default is 11211
+        ],
+    ]
+];
+```
+
 ## Console commands
 
 ### Clear definition cache

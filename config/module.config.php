@@ -8,6 +8,14 @@
  */
 namespace DI\ZendFramework2;
 
+// compatibility with zend > 2.5
+$controllerType = 'ControllerLoader';
+if (class_exists('\Zend\Version\Version')) {
+    if (\Zend\Version\Version::compareVersion('2.5.3') <= 0) {
+        $controllerType = 'ControllerManager';
+    }
+}
+
 return [
     'controllers' => [
         'invokables' => [
@@ -21,7 +29,7 @@ return [
         ),
 
         'factories' => [
-            'ControllerLoader' => __NAMESPACE__ . '\\Service\\ControllerLoaderFactory',
+            $controllerType => __NAMESPACE__ . '\\Service\\ControllerLoaderFactory',
             'DiCache' => __NAMESPACE__ . '\\Service\\CacheFactory\CacheFactory',
         ],
     ],
