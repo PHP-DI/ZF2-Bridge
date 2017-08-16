@@ -5,8 +5,9 @@
 
 namespace Test\DI\ZendFramework2\Service;
 
-use DI\ZendFramework2\Service\CacheFactory;
-use DI\ZendFramework2\Service\ConfigException;
+use DI\ZendFramework2\Service\CacheFactory\CacheFactory;
+use DI\ZendFramework2\Service\CacheFactory\ConfigException;
+use Doctrine\Common\Cache\ApcCache;
 use Doctrine\Common\Cache\FilesystemCache;
 use Doctrine\Common\Cache\RedisCache;
 use Zend\ServiceManager\ServiceManager;
@@ -66,6 +67,21 @@ class CacheFactoryTest extends \PHPUnit_Framework_TestCase
 
         $fileSystemCache = $this->cacheFactory->createService($this->serviceManager);
         self::assertInstanceOf(FilesystemCache::class, $fileSystemCache);
+    }
+
+    public function testApcuCache()
+    {
+        $this->serviceManager->setService('config', [
+            'phpdi-zf2' => [
+                'cache' => [
+                    'namespace' => 'quickstart',
+                    'adapter' => 'apcu',
+                ],
+            ],
+        ]);
+
+        $apcuCache = $this->cacheFactory->createService($this->serviceManager);
+        self::assertInstanceOf(ApcCache::class, $apcuCache);
     }
 
     public function testInvalidCacheConfigWithoutAdapter()

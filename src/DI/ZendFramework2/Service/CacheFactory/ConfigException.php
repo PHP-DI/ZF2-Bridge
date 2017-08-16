@@ -2,7 +2,7 @@
 /**
  * @author  mfris
  */
-namespace DI\ZendFramework2\Service;
+namespace DI\ZendFramework2\Service\CacheFactory;
 
 use Exception;
 
@@ -10,7 +10,7 @@ use Exception;
  * Class ConfigException - custom exception for configuration problems
  *
  * @author mfris
- * @package DI\ZendFramework2\Service
+ * @package DI\ZendFramework\Service
  */
 class ConfigException extends Exception
 {

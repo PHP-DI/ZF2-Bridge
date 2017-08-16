@@ -6,8 +6,8 @@
 namespace Test\DI\ZendFramework2\Service;
 
 use DI\Container;
-use DI\ZendFramework2\Service\CacheFactory;
-use DI\ZendFramework2\Service\ConfigException;
+use DI\ZendFramework2\Service\CacheFactory\CacheFactory;
+use DI\ZendFramework2\Service\CacheFactory\ConfigException;
 use DI\ZendFramework2\Service\DIContainerFactory;
 use Doctrine\Common\Cache\ArrayCache;
 use Test\DI\ZendFramework2\Helper\Config;
@@ -65,7 +65,7 @@ class DIContainerFactoryTest extends \PHPUnit_Framework_TestCase
      */
     private function getDiCacheStub()
     {
-        $stub = $this->getMock('\\DI\\ZendFramework2\\Service\\CacheFactory', ['createService']);
+        $stub = $this->getMock('\\DI\\ZendFramework2\\Service\\CacheFactory\\CacheFactory', ['createService']);
 
         $stub->expects(self::any())
             ->method('createService')

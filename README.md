@@ -87,6 +87,19 @@ return [
 ];
 ```
 
+### Enable APCu
+
+```php
+return [
+    'phpdi-zf2' => [
+        'cache' => [
+            'adapter' => 'apcu',
+            'namespace' => 'your_di_cache_key',
+        ],
+    ]
+];
+```
+
 ### Enable file cache
 
 ```php
