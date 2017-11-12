@@ -11,13 +11,14 @@ use Doctrine\Common\Cache\ApcCache;
 use Doctrine\Common\Cache\FilesystemCache;
 use Doctrine\Common\Cache\RedisCache;
 use Zend\ServiceManager\ServiceManager;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Class CacheFactoryTest
  * @author mfris
  * @package Test\DI\ZendFramework2\Service
  */
-class CacheFactoryTest extends \PHPUnit_Framework_TestCase
+class CacheFactoryTest extends TestCase
 {
 
     /**

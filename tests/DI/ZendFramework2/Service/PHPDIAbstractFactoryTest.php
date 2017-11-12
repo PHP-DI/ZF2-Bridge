@@ -13,11 +13,12 @@ use DI\Container;
 use DI\ContainerBuilder;
 use DI\ZendFramework2\Service\PHPDIAbstractFactory;
 use Zend\ServiceManager\ServiceManager;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @author Matthieu Napoli <matthieu@mnapoli.fr>
  */
-class PHPDIAbstractFactoryTest extends \PHPUnit_Framework_TestCase
+class PHPDIAbstractFactoryTest extends TestCase
 {
     /**
      * @var Container
