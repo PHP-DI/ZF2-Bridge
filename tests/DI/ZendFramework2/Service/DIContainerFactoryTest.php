@@ -13,13 +13,14 @@ use Doctrine\Common\Cache\ArrayCache;
 use Test\DI\ZendFramework2\Helper\Config;
 use Zend\ServiceManager\Exception\ServiceNotCreatedException;
 use Zend\ServiceManager\ServiceManager;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Class DIContainerFactoryTest
  * @author mfris
  * @package Test\DI\ZendFramework2\Service
  */
-class DIContainerFactoryTest extends \PHPUnit_Framework_TestCase
+class DIContainerFactoryTest extends TestCase
 {
 
     /**
