@@ -7,7 +7,7 @@
     "require": {
         "php": ">=5.5",
         "php-di/php-di": "~5.0",
-        "acclimate/container": "~1.0",
+        "acclimate/container": "~1.0 || ~2.0",
         "doctrine/annotations": "~1.0",
         "doctrine/cache": "~1.0"
     },
