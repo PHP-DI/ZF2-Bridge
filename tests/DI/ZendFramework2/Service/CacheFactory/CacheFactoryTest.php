@@ -7,7 +7,7 @@ namespace Test\DI\ZendFramework2\Service;
 
 use DI\ZendFramework2\Service\CacheFactory\CacheFactory;
 use DI\ZendFramework2\Service\CacheFactory\ConfigException;
-use Doctrine\Common\Cache\ApcCache;
+use Doctrine\Common\Cache\ApcuCache;
 use Doctrine\Common\Cache\FilesystemCache;
 use Doctrine\Common\Cache\RedisCache;
 use Zend\ServiceManager\ServiceManager;
@@ -82,7 +82,7 @@ class CacheFactoryTest extends TestCase
         ]);
 
         $apcuCache = $this->cacheFactory->createService($this->serviceManager);
-        self::assertInstanceOf(ApcCache::class, $apcuCache);
+        self::assertInstanceOf(ApcuCache::class, $apcuCache);
     }
 
     public function testInvalidCacheConfigWithoutAdapter()
