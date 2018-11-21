@@ -6,7 +6,7 @@
 
 namespace DI\ZendFramework2\Service\CacheFactory;
 
-use Doctrine\Common\Cache\ApcCache;
+use Doctrine\Common\Cache\ApcuCache;
 
 /**
  * Class RedisFactory
@@ -18,11 +18,11 @@ final class ApcuFactory implements CacheFactoryInterface
 
     /**
      * @param array $config
-     * @return ApcCache
+     * @return ApcuCache
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function newInstance(array $config)
     {
-        return new ApcCache();
+        return new ApcuCache();
     }
 }
